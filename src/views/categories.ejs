@@ -9,12 +9,19 @@
     <p>Choose an area that matches the impact you want to make in your community.</p>
   </section>
 
-  <ul class="card-grid category-grid">
-    <li class="info-card category-card"><h2>Environmental</h2><p>Care for shared outdoor spaces and local resources.</p></li>
-    <li class="info-card category-card"><h2>Educational</h2><p>Support learning and create opportunities for growth.</p></li>
-    <li class="info-card category-card"><h2>Community Service</h2><p>Strengthen connections through practical neighborhood help.</p></li>
-    <li class="info-card category-card"><h2>Health and Wellness</h2><p>Encourage healthy, safe, and supported communities.</p></li>
-  </ul>
+  <% if (categories && categories.length > 0) { %>
+    <ul class="card-grid category-grid">
+      <% categories.forEach((category) => { %>
+        <li class="info-card category-card">
+          <p class="category-label">Service category</p>
+          <h2><%= category.name %></h2>
+          <p>Discover meaningful service opportunities that support your community.</p>
+        </li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p class="empty-message">There are no service categories available right now. Please check again soon.</p>
+  <% } %>
 </main>
 
 <%- include('partials/footer') %>

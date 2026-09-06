@@ -17,6 +17,24 @@ CREATE TABLE project (
         FOREIGN KEY (organization_id)
         REFERENCES organization(organization_id)
 );
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+
+    PRIMARY KEY (project_id, category_id),
+
+    CONSTRAINT fk_project_category_project
+        FOREIGN KEY (project_id)
+        REFERENCES project(project_id),
+
+    CONSTRAINT fk_project_category_category
+        FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+);
 
 INSERT INTO organization (
     name,
@@ -160,3 +178,28 @@ VALUES
     'Southside Neighborhood',
     '2026-10-12'
 );
+INSERT INTO category (name)
+VALUES
+    ('Environmental'),
+    ('Educational'),
+    ('Community Service'),
+    ('Health and Wellness');
+
+INSERT INTO project_category (project_id, category_id)
+VALUES
+
+    (1, 3),
+    (2, 3),
+    (3, 3),
+    (4, 2),
+    (5, 3),
+    (6, 1),
+    (7, 1),
+    (8, 2),
+    (9, 1),
+    (10, 1),
+    (11, 3),
+    (12, 2),
+    (13, 4),
+    (14, 3),
+    (15, 3);
